@@ -2,9 +2,15 @@ import random, time
 import tabulate
 
 
-def qsort(a, pivot_fn):
-    ## TO DO
-    pass
+def qsort(arr, pivot_fn):
+  if len(arr) <= 1:
+      return arr
+  else:
+      pivot = pivot_fn(arr)
+      left = [x for x in arr if x < pivot]
+      middle = [x for x in arr if x == pivot]
+      right = [x for x in arr if x > pivot]
+      return qsort(left, pivot_fn) + middle + qsort(right, pivot_fn)
     
 def time_search(sort_fn, mylist):
     """
@@ -36,6 +42,11 @@ def selection_sort(L):
     L[i], L[m] = L[m], L[i]
   return L
 
+def pivot_first(arr):
+  return arr[0]
+
+def pivot_random(arr):
+  return random.choice(arr)
 
 def compare_sort(sizes=[100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000]):
     """
@@ -48,9 +59,10 @@ def compare_sort(sizes=[100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 10
       for each method to run on each value of n
     """
     ### TODO - sorting algorithms for comparison
-    qsort_fixed_pivot = # 
-    qsort_random_pivot = #
-    tim_sort = #
+    qsort_fixed_pivot = lambda a: qsort(a, pivot_random)  # Random pivot
+
+    qsort_random_pivot = lambda a: qsort(a, pivot_random)  # Random pivot
+  
     result = []
     for size in sizes:
         # create list in ascending order

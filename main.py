@@ -47,7 +47,7 @@ def pivot_first(arr):
 def pivot_random(arr):
   return random.choice(arr)
 
-def compare_sort(sizes=[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]):
+def compare_sort(sizes=[1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]):
     """
     Compare the running time of different sorting algorithms.
 
@@ -74,7 +74,7 @@ def compare_sort(sizes=[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]):
         result.append([
             len(mylist),
             time_search(qsort_fixed_pivot, mylist),
-            time_search(ssort_c, mylist), # CHANGE SSORT TO QSORT_RANDOM_PIVOT FOR TESTING RANDOM PIVOT
+            time_search(tim_sort, mylist), # CHANGE SSORT TO QSORT_RANDOM_PIVOT FOR TESTING RANDOM PIVOT
         ])
     return result
     ###

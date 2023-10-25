@@ -29,6 +29,14 @@ def time_search(sort_fn, mylist):
     return (time.time() - start) * 1000
     ###
 
+def selection_sort(L):
+  for i in range(len(L)):
+    print(L)
+    m = L.index(min(L[i:]))
+    L[i], L[m] = L[m], L[i]
+  return L
+
+
 def compare_sort(sizes=[100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000]):
     """
     Compare the running time of different sorting algorithms.
@@ -65,7 +73,6 @@ def print_results(results):
                             tablefmt="github"))
 
 def test_print():
-    print_results(compare_sort())
-
+    print_results(compare_sort()) 
 random.seed()
 test_print()

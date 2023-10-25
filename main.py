@@ -35,12 +35,11 @@ def time_search(sort_fn, mylist):
     return (time.time() - start) * 1000
     ###
 
-def selection_sort(L):
-  for i in range(len(L)):
-    print(L)
-    m = L.index(min(L[i:]))
-    L[i], L[m] = L[m], L[i]
-  return L
+def ssort(a):
+  for i in range(len(a)):
+    m = a.index(min(a[i:]))
+    a[i], a[m] = a[m], a[i]
+  return a
 
 def pivot_first(arr):
   return arr[0]
@@ -48,7 +47,7 @@ def pivot_first(arr):
 def pivot_random(arr):
   return random.choice(arr)
 
-def compare_sort(sizes=[100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000]):
+def compare_sort(sizes=[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]):
     """
     Compare the running time of different sorting algorithms.
 
@@ -62,7 +61,10 @@ def compare_sort(sizes=[100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 10
     qsort_fixed_pivot = lambda a: qsort(a, pivot_random)  # Random pivot
 
     qsort_random_pivot = lambda a: qsort(a, pivot_random)  # Random pivot
+
+    ssort_c = lambda a: ssort(a) # Ssort function saved
   
+    tim_sort = lambda a: sorted(a)
     result = []
     for size in sizes:
         # create list in ascending order
@@ -72,7 +74,7 @@ def compare_sort(sizes=[100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 10
         result.append([
             len(mylist),
             time_search(qsort_fixed_pivot, mylist),
-            time_search(qsort_random_pivot, mylist),
+            time_search(ssort_c, mylist), # CHANGE SSORT TO QSORT_RANDOM_PIVOT FOR TESTING RANDOM PIVOT
         ])
     return result
     ###
@@ -86,5 +88,6 @@ def print_results(results):
 
 def test_print():
     print_results(compare_sort()) 
+
 random.seed()
 test_print()
